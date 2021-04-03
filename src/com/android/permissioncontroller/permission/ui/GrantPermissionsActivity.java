@@ -55,6 +55,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
@@ -90,6 +91,9 @@ import com.android.permissioncontroller.permission.utils.ArrayUtils;
 import com.android.permissioncontroller.permission.utils.PackageRemovalMonitor;
 import com.android.permissioncontroller.permission.utils.SafetyNetLogger;
 import com.android.permissioncontroller.permission.utils.Utils;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -440,12 +444,16 @@ public class GrantPermissionsActivity extends Activity
             }
         }
 
-        setContentView(mViewHandler.createView());
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(mViewHandler.createView());
 
-        Window window = getWindow();
-        WindowManager.LayoutParams layoutParams = window.getAttributes();
-        mViewHandler.updateWindowAttributes(layoutParams);
-        window.setAttributes(layoutParams);
+        final View bottomSheet = (View) bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+        final View bottomSheetTouchOutsideView = bottomSheetDialog.getWindow().getDecorView().findViewById(com.google.android.material.R.id.touch_outside);
+        bottomSheetDialog.getWindow().getAttributes().windowAnimations = R.style.BottomSheetDialogAnimation;
+        BottomSheetBehavior.from(bottomSheet).setHideable(false);
+        bottomSheet.setBackgroundColor(Color.TRANSPARENT);
+        bottomSheetTouchOutsideView.setOnClickListener(null);
+        bottomSheetDialog.show();
 
         // Restore UI state after lifecycle events. This has to be before
         // showNextPermissionGroupGrantRequest is called. showNextPermissionGroupGrantRequest might

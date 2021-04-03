@@ -183,8 +183,6 @@ public class GrantPermissionsViewHandlerImpl implements GrantPermissionsViewHand
         mRootView = (ViewGroup) LayoutInflater.from(mActivity)
                 .inflate(R.layout.grant_permissions, null);
 
-        int h = mActivity.getResources().getDisplayMetrics().heightPixels;
-        mRootView.setMinimumHeight(h);
         mRootView.findViewById(R.id.grant_singleton).setOnClickListener(this); // Cancel dialog
         mRootView.findViewById(R.id.grant_dialog).setOnClickListener(this); // Swallow click event
 
