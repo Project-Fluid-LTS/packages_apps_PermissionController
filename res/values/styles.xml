@@ -77,7 +77,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">18dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="PermissionGrantButtonList">
@@ -886,10 +885,7 @@
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSecondary</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+
     <!-- END ACCESSIBILITY SERVICE DIALOG ITEM -->
 
-    <style name="BottomSheetDialogAnimation">
-        <item name="android:windowEnterAnimation">@anim/bottomsheet_slide_up</item>
-        <item name="android:windowExitAnimation">@anim/bottomsheet_slide_down</item>
-    </style>
 </resources>
